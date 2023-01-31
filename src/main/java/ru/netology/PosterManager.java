@@ -7,12 +7,13 @@ public class PosterManager {
     public PosterManager() {
         this.limit = 10;
     }
+
     public PosterManager(int limit) {
 
         this.limit = limit;
     }
 
-    // добавление нового постера
+    // Добавление нового фильма
     public void addPoster(String poster) {
         String[] tmp = new String[posters.length + 1];
         for (int i = 0; i < posters.length; i++) {

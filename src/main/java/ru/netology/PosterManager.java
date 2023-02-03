@@ -1,10 +1,11 @@
 package ru.netology;
 
 public class PosterManager {
-    private String[] posters = new String[0];
+    private String[] posters = new String[0];    // Менеджер хранит все фильмы в данном массиве
     private int limit;
 
     public PosterManager() {
+
         this.limit = 10;
     }
 
@@ -23,7 +24,6 @@ public class PosterManager {
         posters = tmp;
     }
 
-
     // Возвращает все фильмы (поиск)
     public String[] findAll() {
 
@@ -34,10 +34,10 @@ public class PosterManager {
     public String[] findLast() {
 
         int resultLenght;                          // Условная переменная кол-ва фильмов
-        if (posters.length < 10) {
+        if (posters.length < limit) {
             resultLenght = posters.length;
         } else {
-            resultLenght = 10;
+            resultLenght = limit;
         }
 
         String[] tmp = new String[resultLenght];

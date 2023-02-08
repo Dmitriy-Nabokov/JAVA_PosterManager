@@ -6,7 +6,7 @@ import ru.netology.PosterManager;
 public class PosterTest {
 
     @Test
-    public void PostersDefaultQuantity() {                 // Тестирование addPoster и findAll
+    public void ShouldFindPostersDefaultQuantity() {             // Найти фильмы со стандартным лимитом
         PosterManager manager = new PosterManager();
 
         manager.addPoster("Poster 1");
@@ -22,7 +22,7 @@ public class PosterTest {
     }
 
     @Test
-    public void PostersVariableQuantity() {
+    public void ShouldFindPostersVariableQuantity() {            // Найти фильмы с установленным лимитом
         PosterManager manager = new PosterManager(6);
 
         manager.addPoster("Poster 1");
@@ -39,7 +39,7 @@ public class PosterTest {
     }
 
     @Test
-    public void PosterFindLast() {
+    public void ShouldFindLastDefaultQuantity() {                // Найти последние фильмы со стандартным лимитом
         PosterManager manager = new PosterManager();
 
         manager.addPoster("Poster 1");
@@ -52,6 +52,56 @@ public class PosterTest {
         String[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void ShouldFindLastVariableQuantity() {                  // Найти последние фильмы с установленным лимитом, равным кол-ву фильмов
+        PosterManager manager = new PosterManager(5);
+
+        manager.addPoster("Poster 1");
+        manager.addPoster("Poster 2");
+        manager.addPoster("Poster 3");
+        manager.addPoster("Poster 4");
+        manager.addPoster("Poster 5");
+
+        String[] expected = {"Poster 5", "Poster 4", "Poster 3", "Poster 2", "Poster 1"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void ShouldFindLastAboveQuantity() {                  // Найти последние фильмы с лимитом, выше кол-ва фильмов
+        PosterManager manager = new PosterManager(7);
+
+        manager.addPoster("Poster 1");
+        manager.addPoster("Poster 2");
+        manager.addPoster("Poster 3");
+        manager.addPoster("Poster 4");
+        manager.addPoster("Poster 5");
+
+        String[] expected = {"Poster 5", "Poster 4", "Poster 3", "Poster 2", "Poster 1"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+        @Test
+        public void ShouldFindLastBelowQuantity() {              // Найти последние фильмы с лимитом, ниже кол-ва фильмов
+            PosterManager manager = new PosterManager(4);
+
+            manager.addPoster("Poster 1");
+            manager.addPoster("Poster 2");
+            manager.addPoster("Poster 3");
+            manager.addPoster("Poster 4");
+            manager.addPoster("Poster 5");
+
+            String[] expected = {"Poster 5", "Poster 4", "Poster 3", "Poster 2"};
+            String[] actual = manager.findLast();
+
+            Assertions.assertArrayEquals(expected, actual);
 
     }
 }
